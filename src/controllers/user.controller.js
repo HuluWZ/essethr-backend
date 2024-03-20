@@ -126,7 +126,7 @@ class UserController {
           .json({ success: false, message: "Incorrect email or password" });
       }
 
-      const token = jwt.sign({ id: user._id }, jwtSecret, { expiresIn: "10d" });
+      const token = jwt.sign({ id: user._id }, process.env.jwtSecret, { expiresIn: "10d" });
 
       await UserDAO.updateUser({ _id: user._id, token, tokenAction: "push" });
 

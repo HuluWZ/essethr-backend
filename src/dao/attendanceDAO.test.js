@@ -6,7 +6,7 @@ const { computePayableHours } = require("../lib/computePayableHours");
 describe("AttendanceDAO test suites", () => {
   let client;
   beforeAll(async () => {
-    client = new MongoClient(prodMongodbURI, {
+    client = new MongoClient(process.env.prodMongodbURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

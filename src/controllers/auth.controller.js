@@ -17,14 +17,12 @@ class AuthController {
       const { user = {}, org = {} } = req.body;
 
       const { email, phone, password, ...rest } = user;
-        console.log("HELLO");
 
       const phoneOrEmailExists = await UserDAO.checkDuplicateEmailOrPhone(
         email,
         phone
       );
 
-      // console.log(phoneOrEmailExists);
       if (phoneOrEmailExists) {
         return res
           .status(400)
@@ -37,6 +35,7 @@ class AuthController {
           .status(400)
           .json({ success: false, error: "Organization name already in use" });
       }
+
       // Org creation
       const newOrg = await OrgDAO.createOrg({
         ...org,
@@ -44,14 +43,12 @@ class AuthController {
         holidays: DEFAULT_ETHIOPIAN_HOLIDAYS,
         createdBy: email,
       });
-      // console.log(result);
-      if (!newOrg.ops) {
+      if (!newOrg.insertedId) {
         return res.status(500).json({
           success: false,
           error: "Error Creating Org",
         });
       }
-      // console.log(result.insertedId);
       const orgId = newOrg.insertedId;
       const encodedPassword = await bcrypt.hash(user.password, 10);
       const userInfo = {
@@ -64,18 +61,15 @@ class AuthController {
       };
       const newUser = await UserDAO.createUser(userInfo);
 
-      console.log(newOrg);
       if (!newUser) {
         return res.status(500).json({
           success: true,
           error: "Error Creating User.",
         });
       }
-      console.log(newOrg.insertedId);
-      const verifyToken = sign({ id: newUser.insertedId }, jwtSecret, {
+      const verifyToken = sign({ id: newUser.insertedId }, process.env.jwtSecret, {
         expiresIn: "1d",
       });
-
       return res.status(201).json({
         success: true,
         user: newUser.insertedId,
@@ -114,7 +108,7 @@ class AuthController {
           .json({ success: false, message: "Incorrect email or password" });
       }
       // console.log(user);
-      const token = sign({ id: user._id }, jwtSecret, {
+      const token = sign({ id: user._id }, process.env.jwtSecret, {
         expiresIn: "1d",
       });
 
@@ -165,7 +159,7 @@ class AuthController {
         });
       }
 
-      const verifyToken = sign({ id: result.insertedId }, jwtSecret, {
+      const verifyToken = sign({ id: result.insertedId }, process.env.jwtSecret, {
         expiresIn: "1d",
       });
 
@@ -190,7 +184,7 @@ class AuthController {
         .json({ success: false, error: "Verification token not provided" });
     }
 
-    const user = verify(verifyToken, jwtSecret);
+    const user = verify(verifyToken, process.env.jwtSecret);
     // console.log(user);
     if (!user) {
       return res

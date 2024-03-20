@@ -48,7 +48,7 @@ class SignupController {
         });
       }
 
-      const verifyToken = await jwt.sign({ id: result.insertedId }, jwtSecret, {
+      const verifyToken = await jwt.sign({ id: result.insertedId }, process.env.jwtSecret, {
         expiresIn: "1d",
       });
 

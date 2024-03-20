@@ -16,7 +16,7 @@ const authenticate = async (req, res, next) => {
     }
 
     let decoded;
-    decoded = jwt.verify(token, jwtSecret);
+    decoded = jwt.verify(token, process.env.jwtSecret);
     // console.log(decoded)
     const id = decoded.id;
     const user = await UserDAO.getUserById(id);

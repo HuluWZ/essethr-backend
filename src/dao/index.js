@@ -30,7 +30,7 @@ async function startDb() {
 
   await client.connect();
 
-  const db = client.db(dbName);
+  const db = client.db(process.env.dbName);
 
   await OrgDAO.injectDB(db);
   await DepartmentDAO.injectDB(db);
