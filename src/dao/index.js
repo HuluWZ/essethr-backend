@@ -20,7 +20,7 @@ const ROLES = ["employee", "manager", "admin"];
 let client;
 
 async function startDb() {
-  console.log(" Db URL ", prodMongodbURI)
+  console.log(" Db URL ", process.env.prodMongodbURI)
   client = new MongoClient(
     process.env.prodMongodbURI,
     {

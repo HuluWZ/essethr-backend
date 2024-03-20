@@ -1,4 +1,3 @@
-require('dotenv').config()
 module.exports = {
   db: {
     prodMongodbURI: process.env.prodMongodbURI,
