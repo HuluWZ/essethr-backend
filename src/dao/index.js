@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 const { devMongodbURI, prodMongodbURI, dbName } = require("../config").db;
-
+require("dotenv").config();
 const UserDAO = require("./userDAO");
 const OrgDAO = require("./orgDAO");
 const DepartmentDAO = require("./departmentDAO");

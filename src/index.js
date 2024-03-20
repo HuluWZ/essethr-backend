@@ -4,8 +4,9 @@ const { startDb } = require("./dao");
 require("dotenv").config();
 async function startServer() {
   try {
-    await startDb();
     const port = process.env.PORT || 4001;
+    console.log(" Port ",port)
+    await startDb();
     app.listen(port, () => {
       console.log(`  Server running on port  ${port} \n`);
     });
