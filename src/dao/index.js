@@ -20,9 +20,9 @@ const ROLES = ["employee", "manager", "admin"];
 let client;
 
 async function startDb() {
+  console.log(" Db URL ", prodMongodbURI)
   client = new MongoClient(
-    prodMongodbURI,
-    // process.env.NODE_ENV !== "production" ? devMongodbURI : prodMongodbURI,
+    process.env.prodMongodbURI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -71,7 +71,6 @@ async function closeDb() {
 module.exports = {
   startDb,
   closeDb,
-
   OrgDAO,
   DepartmentDAO,
   PositionDAO,
