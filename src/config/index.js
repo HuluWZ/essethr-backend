@@ -1,11 +1,11 @@
+require('dotenv').config()
 module.exports = {
   db: {
-    prodMongodbURI:
-      "mongodb+srv://hulunlantew:jW1Oy8NmqMqP1gxZ@essethr.ls2bsfb.mongodb.net/EssetHR?retryWrites=true&w=majority",
-    devMongodbURI: "mongodb://localhost:27017",
-    dbName: "EssetHR",
+    prodMongodbURI: process.env.prodMongodbURI,
+    devMongodbURI: process.env.devMongodbURI,
+    dbName: process.env.dbName,
   },
   auth: {
-    jwtSecret: "234234dfgsdtbskdfsuidfsdfnsdmfsdf,sfsdfskfsfd",
+    jwtSecret: process.env.jwtSecret,
   },
 };

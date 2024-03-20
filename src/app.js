@@ -5,7 +5,7 @@ const cors = require("cors");
 const routes = require("./routes");
 
 const app = express();
-
+require('dotenv').config()
 // var corsOptions = {};
 app.use(cors({ origin: "same-origin" }));
 
