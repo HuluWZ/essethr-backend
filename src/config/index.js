@@ -1,9 +1,9 @@
 module.exports = {
   db: {
     prodMongodbURI:
-      "mongodb+srv://abraham:developerIAM2020@cluster0.dk8dc.gcp.mongodb.net/payrollex?retryWrites=true&w=majority",
+      "mongodb+srv://hulunlantew:jW1Oy8NmqMqP1gxZ@essethr.ls2bsfb.mongodb.net/EssetHR?retryWrites=true&w=majority",
     devMongodbURI: "mongodb://localhost:27017",
-    dbName: "payrollex",
+    dbName: "EssetHR",
   },
   auth: {
     jwtSecret: "234234dfgsdtbskdfsuidfsdfnsdmfsdf,sfsdfskfsfd",
