@@ -15,7 +15,7 @@ app.use(express.json());
 if (process.env.NODE_ENV !== "production") app.use(morgan("dev"));
 
 app.get("/service-worker.js", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "public", "service-worker.js"));
+  res.sendFile("./public/service-worker.js", { root: __dirname });
 });
 
 app.get("/*", function response(req, res) {
