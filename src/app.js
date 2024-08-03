@@ -18,7 +18,7 @@ app.get("/service-worker.js", (req, res) => {
   res.sendFile(path.resolve(__dirname, "public", "service-worker.js"));
 });
 
-app.get("*", function response(req, res) {
+app.get("/*", function response(req, res) {
   res.sendFile("./public/index.html", { root: __dirname });
 });
 
